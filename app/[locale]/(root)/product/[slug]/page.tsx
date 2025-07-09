@@ -12,7 +12,12 @@ import SelectVariant from '@/components/shared/product/select-variant'
 import ProductPrice from '@/components/shared/product/product-price'
 import ProductGallery from '@/components/shared/product/product-gallery'
 import AddToBrowsingHistory from '@/components/shared/product/add-to-browsing-history'
-import { Separator } from '@/components/ui/separator'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 import RatingSummary from '@/components/shared/product/rating-summary'
 import ProductSlider from '@/components/shared/product/product-slider'
@@ -78,17 +83,7 @@ export default async function ProductDetails(props: {
                 asPopover
                 ratingDistribution={product.ratingDistribution}
               />
-              <Separator />
-              <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
-                <div className='flex gap-3'>
-                  <ProductPrice
-                    price={product.price}
-                    listPrice={product.listPrice}
-                    isDeal={product.tags?.includes('todays-deal')}
-                    forListing={false}
-                  />
-                </div>
-              </div>
+             
             </div>
             <div>
               <SelectVariant
@@ -97,21 +92,18 @@ export default async function ProductDetails(props: {
                 color={color || product.colors[0]}
               />
             </div>
-            <Separator className='my-2' />
-            <div className='flex flex-col gap-2'>
-              <p className='p-bold-20 text-grey-600'>
-                {t('Product.Description')}:
-              </p>
-              <p className='p-medium-16 lg:p-regular-18'>
-                {product.description}
-              </p>
-            </div>
+           
           </div>
           <div>
+          
             <Card>
               <CardContent className='p-4 flex flex-col  gap-4'>
-                <ProductPrice price={product.price} />
-
+              <ProductPrice
+                    price={product.price}
+                    listPrice={product.listPrice}
+                    isDeal={product.tags?.includes('todays-deal')}
+                    forListing={false}
+                  />
                 {product.countInStock > 0 && product.countInStock <= 3 && (
                   <div className='text-destructive font-bold'>
                     {t('Product.Only X left in stock - order soon', {
@@ -150,11 +142,20 @@ export default async function ProductDetails(props: {
                 )}
               </CardContent>
             </Card>
+            <Accordion type="single" collapsible className="p-4  bg-secondary">
+  <AccordionItem value="item-1">
+    <AccordionTrigger className='font-semibold text-2xl tracking-tight  '>  {t('Product.Description')}</AccordionTrigger>
+    <AccordionContent  className='text-4xl font-semibold tracking-tight'>
+    {product.description}
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+           
           </div>
         </div>
       </section>
-      <section className='mt-10'>
-        <h2 className='h2-bold mb-2' id='reviews'>
+      <section className='bg-secondary   p-4'>
+        <h2 className='font-semibold text-2xl tracking-tight  mb-2' id='reviews'>
           {t('Product.Customer Reviews')}
         </h2>
         <ReviewList product={product} userId={session?.user.id} />

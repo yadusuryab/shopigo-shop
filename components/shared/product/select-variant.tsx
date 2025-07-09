@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { IProduct } from '@/lib/db/models/product.model'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
 export default function SelectVariant({
@@ -17,14 +18,14 @@ export default function SelectVariant({
   return (
     <>
       {product.colors.length > 0 && (
-        <div className='space-x-2 space-y-2'>
-          <div>Color:</div>
+        <div className='space-x-2 space-y-2 border-t-2 p-4 flex items-center text-muted-foreground font-medium tracking-tight justify-between'>
+          <div>Color</div>
           {product.colors?.map((x: string) => (
-            <Button
-              asChild
-              variant='outline'
+            <div
+              
+              
               className={
-                selectedColor === x ? 'border-2 border-primary' : 'border-2'
+                cn(selectedColor === x ? 'border-2 border-primary' : 'border-2','px-0 py-0 rounded-full   ')
               }
               key={x}
             >
@@ -39,24 +40,25 @@ export default function SelectVariant({
               >
                 <div
                   style={{ backgroundColor: x }}
-                  className='h-4 w-4  border border-muted-foreground'
+                  className='h-4 w-4  rounded-full'
                 ></div>
-                {x}
+                {/* {x} */}
               </Link>
-            </Button>
+            </div>
           ))}
         </div>
       )}
       {product.sizes.length > 0 && (
-        <div className='mt-2 space-x-2 space-y-2'>
-          <div>Size:</div>
+        <div className='mt-2 border-t-2  text-muted-foreground font-medium  space-x-2 p-4 space-y-2  flex items-center font-medium tracking-tight justify-between'>
+          <div>Size</div>
           {product.sizes?.map((x: string) => (
             <Button
               asChild
               variant='outline'
+              size={'icon'}
               className={
-                selectedSize === x ? 'border-2  border-primary' : 'border-2  '
-              }
+                cn(selectedSize === x ? 'border-2 border-primary' : 'border-2','px-0 py-0 rounded-full   ')
+                                }
               key={x}
             >
               <Link

@@ -1,4 +1,5 @@
 'use client'
+import { Badge } from '@/components/ui/badge'
 import useSettingStore from '@/hooks/use-setting-store'
 import { cn, round2 } from '@/lib/utils'
 import { useFormatter, useTranslations } from 'next-intl'
@@ -83,6 +84,7 @@ const ProductPrice = ({
   return (
     <div className={cn('space-y-1', !forListing && 'w-full', className)}>
       {/* Discount badges */}
+      
       {(isDeal || discountPercent > 0) && (
         <div className={cn(
           'flex items-center gap-2',
@@ -129,9 +131,9 @@ const ProductPrice = ({
 
       {/* Savings message */}
       {!isDeal && discountPercent > 0 && (
-        <div className={`text-xs ${colors.savings}`}>
+        <Badge className={`text-xs bg-secondary/30 `} variant={'secondary'} >
           You Save {formattedListPrice} ({discountPercent}%)
-        </div>
+        </Badge>
       )}
     </div>
   )

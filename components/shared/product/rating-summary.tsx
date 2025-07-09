@@ -62,7 +62,7 @@ export default function RatingSummary({
                   {' '}
                   {t('Product.rating star', { rating })}
                 </div>
-                <Progress value={percentage} className='h-4' />
+                <Progress value={percentage} className='h-4  rounded-full' />
                 <div className='text-sm text-right'>{percentage}%</div>
               </div>
             ))}
