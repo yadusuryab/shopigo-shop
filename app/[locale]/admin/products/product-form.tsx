@@ -37,7 +37,7 @@ import {
 
 
 // Predefined options from the product data
-const CATEGORIES = ['T-Shirts', 'Jeans', 'Wrist Watches', 'Shoes'] as const
+const CATEGORIES = ['T-Shirts', 'Jeans', 'Wrist Watches', 'Shoes', 'Airpods', 'Watch','Speaker','As a Gift'] as const
 const TAGS = ['new-arrival', 'featured', 'best-seller', 'todays-deal'] as const
 
 const productDefaultValues: IProductInput =
